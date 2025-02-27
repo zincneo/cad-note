@@ -18,7 +18,7 @@
 
 ```cpp
 // 命令调用堆栈类继承自基类AcRxObject，关于AcRx库下一节会介绍
-class AcEdCommandStack: public AcRxObjectclass AcEdCommandStack: public AcRxObject {
+class AcEdCommandStack: public AcRxObject {
 public:
   virtual Acad::ErrorStatus addCommand(const ACHAR * cmdGroupName, // 命令所属的组
                                      const ACHAR * cmdGlobalName,  // 命令的全局名称
