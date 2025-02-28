@@ -1,0 +1,6 @@
+LIBRARY ArxApp
+
+EXPORTS
+
+acrxEntryPoint	PRIVATE
+acrxGetApiVersion PRIVATE
