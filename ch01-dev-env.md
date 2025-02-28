@@ -9,9 +9,9 @@
 
 ## 构建的目标
 
-- 本质上是要编译出c++的动态链接库
 - 注意最终输出的文件为project_name.arx
 - 通过AutoCAD的`APPLOAD`命令(缩写`AP`)可以加载project_name.arx进行测试
+- 注意，arx程序本质上就是c++动态链接库，因此没有main函数作为程序的入口，取而代之的是acrxEntryPoint函数传递消息到AutoCAD中
 
 ## 创建项目的两种方式
 
@@ -113,12 +113,17 @@ void UnloadApplication() {
   
 ```def
 LIBRARY Exam01
-
+DESCRIPTION "First ARX application"
 EXPORTS
-
 acrxEntryPoint	PRIVATE
 acrxGetApiVersion PRIVATE
 ```
+
+- 关于以上def内容的解释
+- 第一个语句必须是 LIBRARY 语句，后面跟着项目的名称
+- DESCRTIPTION语句可有可无，用来描述这个动态链接库的功能
+- EXPORTS 语句列出了动态链接库输出的函数，对于 ARX 应用程序，至少要输出
+acrxEntryPoint 和 acrxGetApiVersion 两个函数
 
 ### 使用项目
 

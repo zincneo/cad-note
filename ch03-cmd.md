@@ -23,7 +23,7 @@ public:
   virtual Acad::ErrorStatus addCommand(const ACHAR * cmdGroupName, // 命令所属的组
                                      const ACHAR * cmdGlobalName,  // 命令的全局名称
                                      const ACHAR * cmdLocalName,   // 命令的本地名称
-                                     Adesk::Int32 commandFlags,
+                                     Adesk::Int32 commandFlags,    // 命令的类型
                                      AcRxFunctionPtr FunctionAddr, // 命令执行的函数地址
                                      AcEdUIContext *UIContext=NULL,
                                      int fcode=-1,
@@ -31,3 +31,13 @@ public:
                                      AcEdCommand** cmdPtrRet=NULL) = 0;
 }
 ```
+
+需要关注的是前五个参数
+
+1. cmdGroupName 命令属于哪一个组，一个组下可以有多个命令
+2. cmdGlobalName 命令的国际名称(英文)
+3. cmdLocalName 命令的本地名称(本地语言或者也设置英文)
+4. commandFlags 命令的类型
+  - 模态命令: 执行过程中不可以执行其他模态命令，但是可以执行其他透明命令
+  - 透明命令
+
