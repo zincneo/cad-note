@@ -155,13 +155,16 @@ acrxEntryPoint 和 acrxGetApiVersion 两个函数
 - 可能需要这个配置消除编译器报错
   - 项目属性->C/C++->预处理器->预处理器定义`_ALLOW_RTCc_IN_STL`
 
-### 代码简述
+### 模板结构概览
 
-- 核心的代码文件为`acrxEntryPoint.cpp`
-- `CPorjectNameApp`这个类中继承了父类`AcRxArxApp`
+- `StdAfx.cpp` 和 `StdAfx.h`:预编译头文件的创建
+- `acrxEntryPoint.cpp` 应用程序入口点
+  - 与DLL模板中使用面向过程方式实现的不同在于CAD模板中做了封装，以面向对象的方式实现
+  - `CPorjectNameApp`这个类中继承了父类`AcRxArxApp`
     - 这个子类的静态成员方法用来通过ACED_ARXCOMMAND_ENTRY_AUTO宏注册到命令中
     - 这个子类作为宏IMPLEMENT_ARX_ENTRYPOINT的参数定义接口函数acrxEntryPoint
     - 可以看出模板通过宏做了很多事情，使得在这里通过面向对象的方式来完成acrxEntryPoint函数接口的功能
+- `DocData.cpp`：文档数据的封装类
 
 ```cpp
 #include "StdAfx.h"
